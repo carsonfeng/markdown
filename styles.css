@@ -4,12 +4,21 @@
     box-sizing: border-box;
 }
 
+:root {
+    --primary-color: #1a73e8;
+    --primary-hover: #1557b0;
+    --bg-color: #f8f9fa;
+    --border-color: #e0e0e0;
+    --text-color: #333;
+    --text-secondary: #666;
+}
+
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     line-height: 1.6;
-    padding: 20px;
-    background-color: #f5f5f5;
-    color: #333;
+    padding: 40px 20px;
+    background-color: var(--bg-color);
+    color: var(--text-color);
     min-height: 100vh;
 }
 
@@ -17,156 +26,219 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 h1 {
     text-align: center;
-    margin-bottom: 20px;
-    color: #333;
-    font-size: 1.8em;
+    margin-bottom: 24px;
+    color: var(--text-color);
+    font-size: 2em;
+    font-weight: 600;
 }
 
 .intro {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     text-align: center;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.intro p {
+    font-size: 1.1em;
+    color: var(--text-color);
+    margin-bottom: 12px;
 }
 
 .tips {
-    color: #666;
-    font-size: 0.9em;
-    margin-top: 8px;
+    color: var(--text-secondary);
+    font-size: 0.95em;
+    margin-top: 12px;
+    padding: 12px 20px;
+    background-color: var(--bg-color);
+    border-radius: 6px;
+    display: inline-block;
 }
 
 .editor-container {
     display: flex;
-    gap: 20px;
-    margin-bottom: 20px;
+    gap: 24px;
+    margin-bottom: 24px;
 }
 
 .editor-section, .preview-section {
     flex: 1;
     background-color: #fff;
-    border: 1px solid #e0e0e0;
-    border-radius: 4px;
-    padding: 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 h2 {
-    margin-bottom: 15px;
-    color: #333;
-    font-size: 1.2em;
+    margin-bottom: 16px;
+    color: var(--text-color);
+    font-size: 1.3em;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 h2 small {
-    color: #888;
-    font-size: 0.8em;
+    color: var(--text-secondary);
+    font-size: 0.75em;
     font-weight: normal;
+    padding: 4px 8px;
+    background-color: var(--bg-color);
+    border-radius: 4px;
 }
 
 #markdown-input {
     width: 100%;
     height: 500px;
-    padding: 15px;
-    border: 1px solid #e0e0e0;
-    border-radius: 4px;
+    padding: 16px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
     resize: none;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    font-size: 14px;
+    font-size: 15px;
     line-height: 1.6;
+    transition: border-color 0.2s;
+}
+
+#markdown-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.1);
 }
 
 #preview {
     width: 100%;
     height: 500px;
-    padding: 15px;
-    border: 1px solid #e0e0e0;
-    border-radius: 4px;
+    padding: 16px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
     overflow-y: auto;
+    background-color: #fff;
 }
 
 .button-container {
     text-align: center;
-    margin-top: 20px;
+    margin-top: 30px;
     display: flex;
-    gap: 15px;
+    gap: 16px;
     justify-content: center;
 }
 
 button {
-    padding: 10px 20px;
+    padding: 12px 24px;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.2s;
+    font-size: 15px;
+    font-weight: 500;
+    transition: all 0.2s;
 }
 
 #convert-btn {
-    background-color: #1a73e8;
+    background-color: var(--primary-color);
     color: white;
+    box-shadow: 0 2px 4px rgba(26, 115, 232, 0.2);
 }
 
 #convert-btn:hover {
-    background-color: #1557b0;
+    background-color: var(--primary-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px rgba(26, 115, 232, 0.25);
 }
 
 #clear-btn {
-    background-color: #f1f3f4;
-    color: #333;
+    background-color: var(--bg-color);
+    color: var(--text-color);
 }
 
 #clear-btn:hover {
     background-color: #e8eaed;
+    transform: translateY(-1px);
 }
 
 /* 预览区样式 */
 #preview h1, #preview h2, #preview h3 {
-    margin: 1em 0 0.5em;
-    color: #333;
+    margin: 1.2em 0 0.6em;
+    color: var(--text-color);
+    font-weight: 600;
 }
+
+#preview h1 { font-size: 1.8em; }
+#preview h2 { font-size: 1.5em; }
+#preview h3 { font-size: 1.3em; }
 
 #preview table {
     width: 100%;
     border-collapse: collapse;
-    margin: 1em 0;
+    margin: 1.2em 0;
+    border-radius: 6px;
+    overflow: hidden;
 }
 
 #preview th, #preview td {
-    border: 1px solid #e0e0e0;
-    padding: 8px;
+    border: 1px solid var(--border-color);
+    padding: 12px;
 }
 
 #preview th {
-    background-color: #f8f9fa;
+    background-color: var(--bg-color);
+    font-weight: 500;
+}
+
+#preview tr:nth-child(even) {
+    background-color: #fafafa;
 }
 
 /* 响应式设计 */
 @media (max-width: 768px) {
+    body {
+        padding: 20px 16px;
+    }
+
+    .container {
+        padding: 20px;
+    }
+
     .editor-container {
         flex-direction: column;
+        gap: 20px;
     }
     
     #markdown-input, #preview {
         height: 300px;
     }
+
+    button {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
 }
 
 .toast {
     position: fixed;
-    bottom: 20px;
+    bottom: 24px;
     left: 50%;
     transform: translateX(-50%) translateY(100px);
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: #323232;
     color: white;
-    padding: 10px 20px;
-    border-radius: 4px;
+    padding: 12px 24px;
+    border-radius: 6px;
     font-size: 14px;
+    font-weight: 500;
     z-index: 1000;
     opacity: 0;
     transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .toast.show {
@@ -178,19 +250,22 @@ button {
     margin-top: 40px;
     text-align: center;
     padding: 20px 0;
-    border-top: 1px solid #e0e0e0;
+    border-top: 1px solid var(--border-color);
 }
 
 .footer a {
-    color: #1a73e8;
+    color: var(--primary-color);
     text-decoration: none;
     font-size: 14px;
-    transition: color 0.2s;
+    font-weight: 500;
+    transition: all 0.2s;
     padding: 8px 16px;
-    border-radius: 4px;
+    border-radius: 6px;
+    background-color: rgba(26, 115, 232, 0.05);
 }
 
 .footer a:hover {
-    color: #1557b0;
-    background-color: #f1f3f4;
+    color: var(--primary-hover);
+    background-color: rgba(26, 115, 232, 0.1);
+    transform: translateY(-1px);
 } 
