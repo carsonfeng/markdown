@@ -5,19 +5,22 @@
 }
 
 :root {
-    --primary-color: #1a73e8;
-    --primary-hover: #1557b0;
+    --primary-color: #2196f3;
+    --primary-hover: #1976d2;
     --bg-color: #f8f9fa;
     --border-color: #e0e0e0;
     --text-color: #333;
     --text-secondary: #666;
+    --accent-color: #00f2fe;
+    --gradient-start: #2196f3;
+    --gradient-end: #00f2fe;
 }
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     line-height: 1.6;
     padding: 40px 20px;
-    background-color: var(--bg-color);
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4e7eb 100%);
     color: var(--text-color);
     min-height: 100vh;
 }
@@ -25,18 +28,37 @@ body {
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    background-color: #fff;
+    background: rgba(255, 255, 255, 0.95);
     padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 h1 {
     text-align: center;
     margin-bottom: 24px;
     color: var(--text-color);
-    font-size: 2em;
-    font-weight: 600;
+    font-size: 2.2em;
+    font-weight: 700;
+    background: linear-gradient(120deg, var(--gradient-start), var(--gradient-end));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+}
+
+h1::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+    border-radius: 3px;
 }
 
 .intro {
@@ -45,12 +67,17 @@ h1 {
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
+    padding: 20px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.6));
+    border-radius: 12px;
+    backdrop-filter: blur(5px);
 }
 
 .intro p {
     font-size: 1.1em;
     color: var(--text-color);
     margin-bottom: 12px;
+    line-height: 1.8;
 }
 
 .tips {
@@ -58,9 +85,10 @@ h1 {
     font-size: 0.95em;
     margin-top: 12px;
     padding: 12px 20px;
-    background-color: var(--bg-color);
-    border-radius: 6px;
+    background: linear-gradient(135deg, rgba(33, 150, 243, 0.1), rgba(0, 242, 254, 0.1));
+    border-radius: 8px;
     display: inline-block;
+    border: 1px solid rgba(33, 150, 243, 0.2);
 }
 
 .editor-container {
@@ -71,49 +99,63 @@ h1 {
 
 .editor-section, .preview-section {
     flex: 1;
-    background-color: #fff;
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(33, 150, 243, 0.2);
+    border-radius: 12px;
     padding: 20px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+    backdrop-filter: blur(5px);
 }
 
 h2 {
     margin-bottom: 16px;
     color: var(--text-color);
     font-size: 1.3em;
-    font-weight: 500;
+    font-weight: 600;
     display: flex;
     align-items: center;
     gap: 8px;
+}
+
+h2::before {
+    content: '';
+    display: inline-block;
+    width: 4px;
+    height: 18px;
+    background: linear-gradient(to bottom, var(--gradient-start), var(--gradient-end));
+    border-radius: 2px;
+    margin-right: 8px;
 }
 
 h2 small {
     color: var(--text-secondary);
     font-size: 0.75em;
     font-weight: normal;
-    padding: 4px 8px;
-    background-color: var(--bg-color);
-    border-radius: 4px;
+    padding: 4px 12px;
+    background: linear-gradient(135deg, rgba(33, 150, 243, 0.1), rgba(0, 242, 254, 0.1));
+    border-radius: 20px;
+    border: 1px solid rgba(33, 150, 243, 0.2);
 }
 
 #markdown-input {
     width: 100%;
     height: 500px;
     padding: 16px;
-    border: 1px solid var(--border-color);
-    border-radius: 6px;
+    border: 1px solid rgba(33, 150, 243, 0.2);
+    border-radius: 8px;
     resize: none;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     font-size: 15px;
     line-height: 1.6;
-    transition: border-color 0.2s;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.9);
 }
 
 #markdown-input:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.1);
+    box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
+    background: #fff;
 }
 
 #preview {
@@ -135,35 +177,58 @@ h2 small {
 }
 
 button {
-    padding: 12px 24px;
+    padding: 12px 28px;
     border: none;
-    border-radius: 6px;
+    border-radius: 25px;
     cursor: pointer;
     font-size: 15px;
     font-weight: 500;
-    transition: all 0.2s;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
 }
 
 #convert-btn {
-    background-color: var(--primary-color);
+    background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
     color: white;
-    box-shadow: 0 2px 4px rgba(26, 115, 232, 0.2);
+    box-shadow: 0 4px 15px rgba(33, 150, 243, 0.3);
 }
 
 #convert-btn:hover {
-    background-color: var(--primary-hover);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 6px rgba(26, 115, 232, 0.25);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(33, 150, 243, 0.4);
+}
+
+#convert-btn::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transform: rotate(45deg);
+    animation: shine 3s infinite;
+}
+
+@keyframes shine {
+    0% {
+        transform: translateX(-100%) rotate(45deg);
+    }
+    100% {
+        transform: translateX(100%) rotate(45deg);
+    }
 }
 
 #clear-btn {
-    background-color: var(--bg-color);
+    background: rgba(255, 255, 255, 0.9);
     color: var(--text-color);
+    border: 1px solid rgba(33, 150, 243, 0.2);
 }
 
 #clear-btn:hover {
-    background-color: #e8eaed;
-    transform: translateY(-1px);
+    background: rgba(33, 150, 243, 0.1);
+    transform: translateY(-2px);
 }
 
 /* 预览区样式 */
@@ -202,25 +267,53 @@ button {
 /* 响应式设计 */
 @media (max-width: 768px) {
     body {
-        padding: 20px 16px;
+        padding: 16px;
     }
 
     .container {
-        padding: 20px;
+        padding: 16px;
+        border-radius: 12px;
+    }
+
+    h1 {
+        font-size: 1.8em;
+        margin-bottom: 16px;
+    }
+
+    .intro {
+        padding: 16px;
+        margin-bottom: 20px;
+    }
+
+    .intro p {
+        font-size: 1em;
+        line-height: 1.6;
     }
 
     .editor-container {
         flex-direction: column;
-        gap: 20px;
+        gap: 16px;
+    }
+
+    .editor-section, .preview-section {
+        padding: 16px;
     }
     
     #markdown-input, #preview {
-        height: 300px;
+        height: 350px;
+        font-size: 14px;
+    }
+
+    .button-container {
+        flex-direction: column;
+        gap: 12px;
+        padding: 0 20px;
     }
 
     button {
-        padding: 10px 20px;
-        font-size: 14px;
+        width: 100%;
+        padding: 14px 20px;
+        font-size: 16px;
     }
 }
 
@@ -229,16 +322,17 @@ button {
     bottom: 24px;
     left: 50%;
     transform: translateX(-50%) translateY(100px);
-    background-color: #323232;
+    background: rgba(0, 0, 0, 0.8);
     color: white;
     padding: 12px 24px;
-    border-radius: 6px;
+    border-radius: 25px;
     font-size: 14px;
     font-weight: 500;
     z-index: 1000;
     opacity: 0;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(5px);
 }
 
 .toast.show {
@@ -250,7 +344,7 @@ button {
     margin-top: 40px;
     text-align: center;
     padding: 20px 0;
-    border-top: 1px solid var(--border-color);
+    border-top: 1px solid rgba(33, 150, 243, 0.2);
 }
 
 .footer a {
@@ -258,14 +352,16 @@ button {
     text-decoration: none;
     font-size: 14px;
     font-weight: 500;
-    transition: all 0.2s;
-    padding: 8px 16px;
-    border-radius: 6px;
-    background-color: rgba(26, 115, 232, 0.05);
+    transition: all 0.3s ease;
+    padding: 8px 20px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, rgba(33, 150, 243, 0.1), rgba(0, 242, 254, 0.1));
+    border: 1px solid rgba(33, 150, 243, 0.2);
 }
 
 .footer a:hover {
     color: var(--primary-hover);
-    background-color: rgba(26, 115, 232, 0.1);
-    transform: translateY(-1px);
+    background: linear-gradient(135deg, rgba(33, 150, 243, 0.2), rgba(0, 242, 254, 0.2));
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(33, 150, 243, 0.1);
 } 
