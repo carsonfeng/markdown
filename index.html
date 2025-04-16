@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI文本转Word工具</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- 使用本地node_modules中的库文件 -->
+    <script src="node_modules/marked/marked.min.js"></script>
+    <script src="node_modules/docx/dist/index.iife.js"></script>
+    <script src="node_modules/file-saver/dist/FileSaver.min.js"></script>
+    <script src="script.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>AI文本转Word工具</h1>
+        <div class="intro">
+            <p>将AI助手（如Deepseek、ChatGPT）生成的文本转换为规范的Word文档，自动保持格式。</p>
+            <div class="tips">
+                <p>支持的格式：标题(#)、加粗(**)、表格、列表等</p>
+            </div>
+        </div>
+        <div class="editor-container">
+            <div class="editor-section">
+                <h2>编辑区 <small>（粘贴文本到这里）</small></h2>
+                <textarea id="markdown-input" placeholder="在这里粘贴AI助手生成的文本..."></textarea>
+            </div>
+            <div class="preview-section">
+                <h2>预览区 <small>（实时查看效果）</small></h2>
+                <div id="preview"></div>
+            </div>
+        </div>
+        <div class="button-container">
+            <button id="convert-btn">生成Word文档</button>
+            <button id="clear-btn" class="secondary">清空内容</button>
+        </div>
+    </div>
+    <script>
+        // 检查docx库是否正确加载
+        window.addEventListener('load', function() {
+            if (typeof docx === 'undefined') {
+                console.error('docx库加载失败');
+                alert('Word转换功能暂时不可用，请刷新页面重试');
+            } else {
+                console.log('docx库加载成功，版本:', docx.Document ? '正确' : '错误');
+            }
+        });
+    </script>
+</body>
+</html> 
