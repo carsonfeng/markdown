@@ -5,10 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>📝 AI文本转Word工具</title>
     <link rel="stylesheet" href="styles.css">
-    <!-- 使用本地lib目录中的库文件 -->
-    <script src="lib/marked.min.js"></script>
-    <script src="lib/docx.min.js"></script>
-    <script src="lib/FileSaver.min.js"></script>
+    <!-- 主要CDN -->
+    <script src="https://unpkg.com/marked@11.1.1/marked.min.js"></script>
+    <script src="https://unpkg.com/docx@8.2.3/build/index.iife.js"></script>
+    <script src="https://unpkg.com/file-saver@2.0.5/dist/FileSaver.min.js"></script>
+    <!-- 备用CDN -->
+    <script>
+        window.addEventListener('load', function() {
+            let errors = [];
+            if (typeof marked === 'undefined') {
+                errors.push('marked');
+                // 尝试备用CDN
+                let script = document.createElement('script');
+                script.src = 'https://cdn.bootcdn.net/ajax/libs/marked/11.1.1/marked.min.js';
+                document.head.appendChild(script);
+            }
+            if (typeof docx === 'undefined') {
+                errors.push('docx');
+                let script = document.createElement('script');
+                script.src = 'https://cdn.bootcdn.net/ajax/libs/docx/8.2.3/docx.iife.min.js';
+                document.head.appendChild(script);
+            }
+            if (typeof saveAs === 'undefined') {
+                errors.push('FileSaver');
+                let script = document.createElement('script');
+                script.src = 'https://cdn.bootcdn.net/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js';
+                document.head.appendChild(script);
+            }
+            
+            if (errors.length > 0) {
+                console.warn('正在尝试备用CDN加载:', errors.join(', '));
+                // 给备用CDN一些加载时间
+                setTimeout(function() {
+                    let remainingErrors = [];
+                    if (typeof marked === 'undefined') remainingErrors.push('marked');
+                    if (typeof docx === 'undefined') remainingErrors.push('docx');
+                    if (typeof saveAs === 'undefined') remainingErrors.push('FileSaver');
+                    
+                    if (remainingErrors.length > 0) {
+                        console.error('库加载失败:', remainingErrors.join(', '));
+                        alert('页面加载不完整，请检查网络连接并刷新页面重试\n未能加载: ' + remainingErrors.join(', '));
+                    }
+                }, 2000);
+            }
+        });
+    </script>
     <script src="script.js"></script>
 </head>
 <body>
@@ -35,16 +76,5 @@
             <button id="clear-btn" class="secondary">清空内容</button>
         </div>
     </div>
-    <script>
-        // 检查docx库是否正确加载
-        window.addEventListener('load', function() {
-            if (typeof docx === 'undefined') {
-                console.error('docx库加载失败');
-                alert('Word转换功能暂时不可用，请刷新页面重试');
-            } else {
-                console.log('docx库加载成功，版本:', docx.Document ? '正确' : '错误');
-            }
-        });
-    </script>
 </body>
 </html> 

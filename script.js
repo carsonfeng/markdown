@@ -283,7 +283,7 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
     // 转换为Word文档
-    convertBtn.addEventListener('click', () => {
+    convertBtn.addEventListener('click', async () => {
         try {
             if (!markdownInput.value.trim()) {
                 showToast('请先粘贴或输入要转换的文本');
@@ -291,7 +291,7 @@ window.addEventListener('DOMContentLoaded', () => {
             }
 
             showToast('正在生成Word文档...');
-            // 创建新文档
+            // 创建新的Word文档
             const doc = new docx.Document({
                 sections: [{
                     properties: {},
@@ -351,14 +351,15 @@ window.addEventListener('DOMContentLoaded', () => {
                 }
             });
 
-            // 生成文档并下载
-            docx.Packer.toBlob(doc).then(blob => {
-                saveAs(blob, 'AI文本转换.docx');
-                showToast('Word文档已生成，正在下载...');
-            });
+            // 生成blob
+            const blob = await docx.Packer.toBlob(doc);
+            
+            // 保存文件
+            saveAs(blob, "converted-document.docx");
+            showToast('文档已生成');
         } catch (error) {
             console.error('转换失败:', error);
-            showToast('转换失败：' + error.message);
+            showToast('转换失败: ' + error.message);
         }
     });
 }); 
