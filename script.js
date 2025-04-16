@@ -6,6 +6,52 @@ window.addEventListener('DOMContentLoaded', () => {
     const convertBtn = document.getElementById('convert-btn');
     const clearBtn = document.getElementById('clear-btn');
 
+    // 设置默认文本
+    const defaultText = `# AI文本转Word示例文档
+
+这是一个示例文档，展示了支持的Markdown格式。您可以直接修改这些内容，或者清空后粘贴自己的文本。
+
+## 1. 基础文本格式
+
+- **加粗文本**：使用 \`**文本**\`
+- *斜体文本*：使用 \`*文本*\`
+- 普通段落：直接输入文本即可
+- 分隔线：使用 \`---\`
+
+---
+
+## 2. 列表示例
+
+### 2.1 无序列表
+- 苹果
+- 香蕉
+- 橙子
+
+### 2.2 有序列表
+1. 第一步
+2. 第二步
+3. 第三步
+
+## 3. 表格示例
+
+| 功能 | 语法 | 效果 |
+|------|------|------|
+| 标题 | \`# 文本\` | 大标题 |
+| 加粗 | \`**文本**\` | **加粗** |
+| 列表 | \`- 文本\` | 列表项 |
+
+## 4. 使用说明
+
+1. 直接在编辑区修改文本
+2. 在预览区实时查看效果
+3. 点击"生成Word文档"按钮
+4. 自动下载转换后的文档
+
+> 提示：Word文档会保持格式，包括标题层级、加粗、表格等样式。`;
+
+    // 设置默认文本
+    markdownInput.value = defaultText;
+
     // 设置marked选项
     marked.setOptions({
         breaks: true,     // 启用换行符
@@ -19,6 +65,9 @@ window.addEventListener('DOMContentLoaded', () => {
         const content = markdownInput.value;
         preview.innerHTML = marked.parse(content);
     }
+
+    // 初始化预览
+    updatePreview();
 
     // 监听输入变化
     markdownInput.addEventListener('input', updatePreview);
@@ -312,7 +361,4 @@ window.addEventListener('DOMContentLoaded', () => {
             showToast('转换失败：' + error.message);
         }
     });
-
-    // 初始预览
-    updatePreview();
 }); 
