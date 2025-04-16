@@ -172,4 +172,25 @@ button {
 .toast.show {
     transform: translateX(-50%) translateY(0);
     opacity: 1;
+}
+
+.footer {
+    margin-top: 40px;
+    text-align: center;
+    padding: 20px 0;
+    border-top: 1px solid #e0e0e0;
+}
+
+.footer a {
+    color: #1a73e8;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.2s;
+    padding: 8px 16px;
+    border-radius: 4px;
+}
+
+.footer a:hover {
+    color: #1557b0;
+    background-color: #f1f3f4;
 } 
